@@ -1,5 +1,7 @@
 import React from "react";
 
+const cc = AppContext = React.createContext()
+
 export const AppContext = React.createContext();
 
 export class AppProvider extends React.Component {
@@ -11,6 +13,16 @@ export class AppProvider extends React.Component {
       setPage: this.setPage,
       confirmFavorites: this.confirmFavorites
     };
+  }
+
+  componentDidMount = () => {
+    this.fetchCoins()
+  }
+
+  fetchCoins = async () => {
+    let coinList = (await cc.coinList())
+    this.setState{coinList})
+    
   }
 
   confirmFavorites = () => {
