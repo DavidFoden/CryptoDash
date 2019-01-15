@@ -1,6 +1,6 @@
 import React from "react";
 
-const cc = AppContext = React.createContext()
+const cc = (AppContext = React.createContext());
 
 export const AppContext = React.createContext();
 
@@ -16,14 +16,13 @@ export class AppProvider extends React.Component {
   }
 
   componentDidMount = () => {
-    this.fetchCoins()
-  }
+    this.fetchCoins();
+  };
 
   fetchCoins = async () => {
-    let coinList = (await cc.coinList())
-    this.setState{coinList})
-    
-  }
+    let coinList = await cc.coinList();
+    this.setState({ coinList });
+  };
 
   confirmFavorites = () => {
     this.setState({
