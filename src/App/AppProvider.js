@@ -1,6 +1,6 @@
 import React from "react";
 
-const cc = (AppContext = React.createContext());
+const cc = require("cryptocompare");
 
 export const AppContext = React.createContext();
 
