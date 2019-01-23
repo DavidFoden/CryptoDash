@@ -42,7 +42,6 @@ export default function({ coinKey, topSection }) {
               name={coin.CoinName}
               symbol={coin.Symbol}
             />
-            {coin.CoinName}
             <CoinImage coin={coin} />
           </TileClass>
         );
