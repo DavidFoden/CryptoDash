@@ -1,21 +1,42 @@
 import React from "react";
 import { AppContext } from "../App/AppProvider";
-import { SelectableTile, DisabledTile, DeletableTile } from "../Shared/Tile";
+import { SelectableTile, DeletableTile, DisabledTile } from "../Shared/Tile";
 import CoinHeaderGrid from "./CoinHeaderGrid";
 import CoinImage from "../Shared/CoinImage";
+
+function clickCoinHandler(topSection, coinKey, addCoin, removeCoin) {
+  return topSection
+    ? () => {
+        removeCoin(coinKey);
+      }
+    : () => {
+        addCoin(coinKey);
+      };
+}
+
+// class ErrorBoundary extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { hasError: false };
+//   }
 
 export default function({ coinKey, topSection }) {
   return (
     <AppContext.Consumer>
-      {({ coinList }) => {
+      {({ coinList, addCoin, removeCoin, isInFavorites }) => {
         let coin = coinList[coinKey];
+
         let TileClass = SelectableTile;
         if (topSection) {
           TileClass = DeletableTile;
+        } else if (isInFavorites(coinKey)) {
+          TileClass = DisabledTile;
         }
 
         return (
-          <TileClass>
+          <TileClass
+            onClick={clickCoinHandler(topSection, coinKey, addCoin, removeCoin)}
+          >
             <CoinHeaderGrid
               topSection={topSection}
               name={coin.CoinName}
