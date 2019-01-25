@@ -13,10 +13,10 @@ const PriceGrid = styled.div`
 export default function() {
   return (
     <AppContext.Consumer>
-      {({ prices, idx }) => (
+      {({ prices }) => (
         <PriceGrid>
           {prices.map((price, index) => (
-            <PriceTile index={index} price={price} key={idx} />
+            <PriceTile key={`priceTile-${index}`} index={index} price={price} />
           ))}
         </PriceGrid>
       )}
